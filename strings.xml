@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">PixelPet</string>
+    <string name="title_activity_main">PixelPet</string>
+    <string name="package_name">com.pixelpet.app</string>
+    <string name="custom_url_scheme">com.pixelpet.app</string>
+</resources>
