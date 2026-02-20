@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 25% 12%;
+    --foreground: 0 0% 90%;
+    --card: 240 20% 18%;
+    --card-foreground: 0 0% 90%;
+    --popover: 240 20% 15%;
+    --popover-foreground: 0 0% 90%;
+    --primary: 280 60% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 180 60% 45%;
+    --secondary-foreground: 0 0% 10%;
+    --muted: 240 15% 25%;
+    --muted-foreground: 240 10% 60%;
+    --accent: 320 80% 60%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 15% 30%;
+    --input: 240 15% 25%;
+    --ring: 280 60% 55%;
+    --radius: 0px;
+    
+    /* Pixel Pet Custom Colors */
+    --pet-bg: #1a1a2e;
+    --pet-screen: #0f3460;
+    --pet-border: #e94560;
+    --pet-accent: #533483;
+    --pet-green: #16c79a;
+    --pet-yellow: #ffd700;
+    --pet-red: #e94560;
+    --pet-blue: #4fbdba;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+  
+  html {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    background: var(--pet-bg);
+    overflow-x: hidden;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Pixel Art Utilities */
+.pixel-border {
+  box-shadow: 
+    -4px 0 0 0 var(--pet-border),
+    4px 0 0 0 var(--pet-border),
+    0 -4px 0 0 var(--pet-border),
+    0 4px 0 0 var(--pet-border);
+}
+
+.pixel-border-thick {
+  box-shadow: 
+    -6px 0 0 0 var(--pet-border),
+    6px 0 0 0 var(--pet-border),
+    0 -6px 0 0 var(--pet-border),
+    0 6px 0 0 var(--pet-border),
+    inset -4px 0 0 0 rgba(0,0,0,0.3),
+    inset 4px 0 0 0 rgba(0,0,0,0.3),
+    inset 0 -4px 0 0 rgba(0,0,0,0.3),
+    inset 0 4px 0 0 rgba(0,0,0,0.3);
+}
+
+.pixel-btn {
+  @apply relative transition-all duration-100 active:scale-95;
+  box-shadow: 
+    0 4px 0 0 rgba(0,0,0,0.5),
+    inset -2px 0 0 0 rgba(255,255,255,0.1),
+    inset 2px 0 0 0 rgba(255,255,255,0.1),
+    inset 0 -2px 0 0 rgba(0,0,0,0.2),
+    inset 0 2px 0 0 rgba(255,255,255,0.1);
+}
+
+.pixel-btn:active {
+  box-shadow: 
+    0 2px 0 0 rgba(0,0,0,0.5),
+    inset -2px 0 0 0 rgba(0,0,0,0.2),
+    inset 2px 0 0 0 rgba(0,0,0,0.2),
+    inset 0 -2px 0 0 rgba(0,0,0,0.3),
+    inset 0 2px 0 0 rgba(0,0,0,0.1);
+  transform: translateY(2px);
+}
+
+/* Screen Effects */
+.crt-screen {
+  position: relative;
+  background: var(--pet-screen);
+  overflow: hidden;
+}
+
+.crt-screen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0,0,0,0.15),
+    rgba(0,0,0,0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+.crt-screen::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    rgba(0,0,0,0.3) 100%
+  );
+  pointer-events: none;
+  z-index: 11;
+}
+
+/* Pixel Grid Background */
+.pixel-grid {
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+/* Animations */
+@keyframes blink {
+  0%, 90%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-2px) rotate(1deg); }
+  75% { transform: translateY(-1px) rotate(-1deg); }
+}
+
+@keyframes eat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes sleep {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 10px var(--pet-accent); }
+  50% { box-shadow: 0 0 20px var(--pet-accent), 0 0 30px var(--pet-accent); }
+}
+
+@keyframes slide-up {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-blink { animation: blink 3s infinite; }
+.animate-bounce-soft { animation: bounce 2s ease-in-out infinite; }
+.animate-wiggle { animation: wiggle 1s ease-in-out infinite; }
+.animate-float { animation: float 3s ease-in-out infinite; }
+.animate-eat { animation: eat 0.3s ease-in-out; }
+.animate-sleep { animation: sleep 2s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+.animate-slide-up { animation: slide-up 0.3s ease-out; }
+.animate-fade-in { animation: fade-in 0.5s ease-out; }
+
+/* Stat Bars */
+.stat-bar {
+  @apply h-3 bg-gray-800 relative overflow-hidden;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.stat-fill {
+  @apply h-full transition-all duration-500;
+  box-shadow: inset 0 -2px 4px rgba(0,0,0,0.3);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--pet-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--pet-accent);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--pet-border);
+}
+
+/* Mobile Optimizations */
+@media (max-width: 480px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+/* Disable text selection */
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Touch feedback */
+.touch-feedback:active {
+  opacity: 0.8;
+  transform: scale(0.98);
+}

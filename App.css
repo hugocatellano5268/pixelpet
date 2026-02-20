@@ -1,0 +1,205 @@
+/* App-specific styles */
+
+/* Ensure proper touch handling on mobile */
+* {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Custom range slider styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-track {
+  background: #374151;
+  height: 4px;
+  border-radius: 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background: currentColor;
+  height: 12px;
+  width: 12px;
+  margin-top: -4px;
+  border-radius: 0;
+}
+
+input[type="range"]::-moz-range-track {
+  background: #374151;
+  height: 4px;
+  border-radius: 0;
+}
+
+input[type="range"]::-moz-range-thumb {
+  background: currentColor;
+  height: 12px;
+  width: 12px;
+  border: none;
+  border-radius: 0;
+}
+
+/* Custom scrollbar for modals */
+.modal-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-scroll::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+
+.modal-scroll::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 0;
+}
+
+/* Prevent pull-to-refresh on mobile */
+body {
+  overscroll-behavior-y: none;
+}
+
+/* Ensure fixed elements work properly */
+.fixed {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* Animation for pet floating */
+@keyframes pet-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.pet-float {
+  animation: pet-float 2s ease-in-out infinite;
+}
+
+/* Status indicator pulse */
+@keyframes status-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.status-pulse {
+  animation: status-pulse 1s ease-in-out infinite;
+}
+
+/* Button press effect */
+.btn-press:active {
+  transform: scale(0.95);
+}
+
+/* CRT flicker effect */
+@keyframes crt-flicker {
+  0% {
+    opacity: 0.97;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.98;
+  }
+}
+
+.crt-flicker {
+  animation: crt-flicker 0.15s infinite;
+}
+
+/* Scanline effect */
+.scanlines::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.1) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Glow effect for happy pets */
+.happy-glow {
+  box-shadow: 0 0 20px rgba(255, 107, 157, 0.3),
+              0 0 40px rgba(255, 107, 157, 0.2),
+              0 0 60px rgba(255, 107, 157, 0.1);
+}
+
+/* Sick overlay */
+.sick-overlay::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(149, 165, 166, 0.2);
+  pointer-events: none;
+}
+
+/* Sleep overlay */
+.sleep-overlay::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(155, 89, 182, 0.3);
+  pointer-events: none;
+}
+
+/* Responsive adjustments */
+@media (max-height: 700px) {
+  .pet-screen {
+    aspect-ratio: 4/3;
+  }
+}
+
+@media (max-height: 600px) {
+  .pet-screen {
+    aspect-ratio: 16/10;
+  }
+}
+
+/* Safe area for notched phones */
+@supports (padding-top: env(safe-area-inset-top)) {
+  header {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  main {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
